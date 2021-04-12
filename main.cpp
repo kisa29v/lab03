@@ -125,6 +125,30 @@ int main()
     size_t max_count = 0;
 
     show_histogram_svg(bins);
+    size_t height;
+    const bool scaling_needed = max_count > MAX_ASTERISK;
+
+    for (size_t bin : bins) {
+        if (bin < 100) {
+            cout << ' ';
+        }
+        if (bin < 10) {
+            cout << ' ';
+        }
+        cout << bin << "|";
+
+        size_t height = bin;
+        if (scaling_needed) {
+            const double scaling_factor = (double)MAX_ASTERISK / max_count;
+            height = (size_t)(bin * scaling_factor);
+        }
+
+        for (size_t i = 0; i < height; i++) {
+            cout << '*';
+        }
+        cout << '\n';
+    }
+
 
     return 0;
 }
