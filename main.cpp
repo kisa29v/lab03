@@ -5,7 +5,8 @@
 using namespace std;
 const size_t SCREEN_WIDTH = 80;
 const size_t MAX_ASTERISK = SCREEN_WIDTH - 4 - 1;
-struct Input {
+struct Input
+{
     vector<double> numbers;
     size_t bin_count;
 };
@@ -20,31 +21,40 @@ input_numbers(istream& in, size_t count)
     return result;
 }
 Input
-read_input(istream& in) {
+read_input(istream& in, bool prompt)
+{
     Input data;
-
-    cerr << "Enter number count: ";
+    if (prompt == true)
+    {
+        cerr << "Enter number count: ";
+    }
     size_t number_count;
     in >> number_count;
+    if (prompt == true)
+    {
+         cerr << "Enter numbers: ";
+    }
 
-    cerr << "Enter numbers: ";
     data.numbers = input_numbers(in, number_count);
     size_t bin_count;
-    cerr << "Enter column count: ";
+    if (prompt == true)
+    {
+         cerr << "Enter column count: ";
+    }
     cin >> bin_count;
 
     return data;
 }
-vector<size_t> make_histogram(const vector<double>& numbers, size_t bin_count)
+vector<size_t> make_histogram(Input data)
 {
-    double min = numbers[0];
-    double max = numbers[0];
-    find_minmax(numbers, min, max);
-    vector<size_t> bins(bin_count);
-    for (double number : numbers)
+    double min = data.numbers[0];
+    double max = data.numbers[0];
+    find_minmax(data.numbers, min, max);
+    vector<size_t> bins(data.bin_count);
+    for (double number : data.numbers)
     {
-        size_t bin = (size_t)((number - min) / (max - min) * bin_count);
-        if (bin == bin_count)
+        size_t bin = (size_t)((number - min) / (max - min) * data.bin_count);
+        if (bin == data.bin_count)
         {
             bin--;
         }
@@ -53,16 +63,17 @@ vector<size_t> make_histogram(const vector<double>& numbers, size_t bin_count)
     return bins;
 }
 int main()
-{   size_t number_count;
-    size_t bin_count;
-    read_input(cin);
+{
+    auto in = read_input(cin, true);
 
     // Ввод чисел заменен вызовом функции:
-    const auto numbers = input_numbers(cin, number_count);
+    //const auto numbers = input_numbers(cin, number_count);
 
     // Обработка данных
 
-    const auto bins = make_histogram(numbers, bin_count);
+    const auto input = read_input(cin, true);
+    const auto bins = make_histogram(input);
+    show_histogram_svg(bins);
 
     // Вывод данных
     const size_t SCREEN_WIDTH = 80;
