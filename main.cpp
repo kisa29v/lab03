@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "histogram.h"
+#include <curl/curl.h>
 
 using namespace std;
 const size_t SCREEN_WIDTH = 80;
@@ -24,7 +25,7 @@ Input
 read_input(istream& in, bool prompt)
 {
     Input data;
-    if (prompt == true)
+    if (prompt)
     {
         cerr << "Enter number count: ";
     }
@@ -36,12 +37,12 @@ read_input(istream& in, bool prompt)
     }
 
     data.numbers = input_numbers(in, number_count);
-    size_t bin_count;
+
     if (prompt == true)
     {
          cerr << "Enter column count: ";
     }
-    cin >> bin_count;
+    cin >> data.bin_count;
 
     return data;
 }
@@ -64,7 +65,8 @@ vector<size_t> make_histogram(Input data)
 }
 int main()
 {
-    auto in = read_input(cin, true);
+    curl_global_init(CURL_GLOBAL_ALL);
+    //auto in = read_input(cin, true);
 
     // Ввод чисел заменен вызовом функции:
     //const auto numbers = input_numbers(cin, number_count);
@@ -73,10 +75,11 @@ int main()
 
     const auto input = read_input(cin, true);
     const auto bins = make_histogram(input);
+
     show_histogram_svg(bins);
 
     // Вывод данных
-    const size_t SCREEN_WIDTH = 80;
+    /*const size_t SCREEN_WIDTH = 80;
     const size_t MAX_ASTERISK = SCREEN_WIDTH - 4 - 1;
 
     size_t max_count = 0;
@@ -109,7 +112,7 @@ int main()
             cout << '*';
         }
         cout << '\n';
-    }
+    }*/
     /*svg_begin(width, height);
     svg_end();
     svg_text(left, baseline, text);
