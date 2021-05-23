@@ -1,0 +1,44 @@
+# depslib dependency file v1.0
+1618224349 source:l:\i курс\А-1-20\Яблокова\2сем\задача 3\lab03\main.cpp
+	<iostream>
+	<vector>
+
+1618234951 source:c:\users\u211-01\desktop\lab03\main.cpp
+	<iostream>
+	<vector>
+	"histogram.h"
+
+1618235058 c:\users\u211-01\desktop\lab03\histogram.h
+	<vector>
+
+1618235523 source:c:\users\u211-01\desktop\lab03\histogram.cpp
+	"histogram.h"
+
+1618235524 source:h:\рпосу\лаба3прода\lab03\histogram.cpp
+	"histogram.h"
+
+1618235060 h:\рпосу\лаба3прода\lab03\histogram.h
+	<vector>
+
+1618235950 source:h:\рпосу\лаба3прода\lab03\main.cpp
+	<iostream>
+	<vector>
+	"histogram.h"
+
+1619265200 source:c:\users\den4ik\desktop\0lab03\main.cpp
+	<iostream>
+	<vector>
+	"histogram.h"
+
+1621708705 c:\users\den4ik\desktop\0lab03\histogram.h
+	<vector>
+
+1621708464 source:c:\users\den4ik\desktop\0lab03\histogram.cpp
+	"histogram.h"
+
+1621708464 source:c:\users\den4ik\desktop\0lab03\дз\histogram.cpp
+	"histogram.h"
+
+1621708705 c:\users\den4ik\desktop\0lab03\дз\histogram.h
+	<vector>
+
