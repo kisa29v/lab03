@@ -6,10 +6,7 @@
 using namespace std;
 const size_t SCREEN_WIDTH = 80;
 const size_t MAX_ASTERISK = SCREEN_WIDTH - 4 - 1;
-struct Input {
-    vector<double> numbers;
-    size_t bin_count;
-};
+
 vector<double>
 input_numbers(istream& in, size_t count)
 {
@@ -21,25 +18,26 @@ input_numbers(istream& in, size_t count)
     return result;
 }
 Input
-read_input(istream& in) {
+read_input(istream& in, bool promt) {
     Input data;
-
-    cerr << "Enter number count: ";
+    if(promt){
+        cerr << "Enter number count: ";
+    }
     size_t number_count;
     in >> number_count;
 
     data.numbers = input_numbers(in, number_count);
-
-    cerr <<"Enter bin count:";
+    if (promt){
+        cerr <<"Enter bin count:";
+    }
     in >> data.bin_count;
 
     return data;
 }
 int main()
-{   Input input;
-    input=read_input(cin);
+{   const auto input = read_input(cin, false);
 
-    const auto bins = make_histogram(input.numbers, input.bin_count);
+    const auto bins = make_histogram(input);
 
     show_histogram_svg(bins);
     return 0;
