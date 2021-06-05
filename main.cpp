@@ -18,7 +18,7 @@ input_numbers(istream& in, size_t count)
     return result;
 }
 int main()
-{   /*
+{
     size_t number_count;
     cerr << "Enter number count: ";
     cin >> number_count;
@@ -32,7 +32,7 @@ int main()
     find_minmax(numbers,min,max);
     const auto bins = make_histogram(numbers, bin_count);
 
-    show_histogram_svg(bins);*/
+    show_histogram_svg(bins);
     DWORD info = GetVersion();
     DWORD mask = 0x0000ffff;
     DWORD version = info & mask;
