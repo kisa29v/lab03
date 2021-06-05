@@ -3,6 +3,7 @@
 #include "histogram.h"
 #include "svg.h"
 
+
 using namespace std;
 const size_t SCREEN_WIDTH = 80;
 const size_t MAX_ASTERISK = SCREEN_WIDTH - 4 - 1;
@@ -35,7 +36,7 @@ read_input(istream& in, bool promt) {
     return data;
 }
 int main()
-{   const auto input = read_input(cin, false);
+{   const auto input = read_input(cin, true);
 
     const auto bins = make_histogram(input);
 
