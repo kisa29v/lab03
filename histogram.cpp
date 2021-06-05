@@ -16,16 +16,15 @@ find_minmax(const vector<double>& numbers, double& min, double& max)
         }
     }
 }
-vector<size_t> make_histogram(const vector<double>& numbers, size_t bin_count)
+vector<size_t> make_histogram(const Input& data)
 {
-    double min = numbers[0];
-    double max = numbers[0];
-    find_minmax(numbers, min, max);
-    vector<size_t> bins(bin_count);
-    for (double number : numbers)
+    double min, max;
+    find_minmax(data.numbers, min, max);
+    vector<size_t> bins(data.bin_count);
+    for (double number : data.numbers)
     {
-        size_t bin = (size_t)((number - min) / (max - min) * bin_count);
-        if (bin == bin_count)
+        size_t bin = (size_t)((number - min) / (max - min) * data.bin_count);
+        if (bin == data.bin_count)
         {
             bin--;
         }
@@ -42,7 +41,7 @@ show_histogram_text (const vector<size_t>& bins)
     size_t max_count = 0;
     for (size_t count : bins) {
         if (count > max_count) {
- max_count = count;
+             max_count = count;
         }
     }
     const bool scaling_needed = max_count > MAX_ASTERISK;
